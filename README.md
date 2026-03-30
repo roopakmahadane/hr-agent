@@ -99,6 +99,63 @@ The `__main__` block runs a real end-to-end pipeline with an Impresario Entertai
 
 ---
 
+## API Usage
+
+Start the server:
+```bash
+pip install fastapi uvicorn
+uvicorn main:app --reload
+```
+
+**POST /generate-curriculum**
+
+```bash
+curl -X POST http://localhost:8000/generate-curriculum \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jd_text": "We are hiring a Senior HR Business Partner...",
+    "company_profile": {
+      "name": "Impresario Entertainment & Hospitality",
+      "brands": "SOCIAL, Smoke House Deli",
+      "industry": "Restaurant & Hospitality",
+      "size": "500+ staff, 60+ outlets across India",
+      "values": "Creativity, Warmth, Operational Excellence, Community"
+    },
+    "task": "Generate training curriculum"
+  }'
+```
+
+Response:
+```json
+{
+  "curriculum": "Module 1: Frontline Leadership & People Management\n  Lesson 1.1: ...",
+  "quality_score": 9,
+  "attempts": 1,
+  "competencies": [
+    "Competency-Based Talent Acquisition",
+    "Frontline Workforce Development",
+    "Data-Driven HR Decision Making",
+    "Multi-Location Employee Relations",
+    "Succession Pipeline Management",
+    "Stakeholder & GM Partnership"
+  ],
+  "web_research": [
+    "Best practices for L&D in high-volume hospitality...",
+    "..."
+  ]
+}
+```
+
+**GET /health**
+```bash
+curl http://localhost:8000/health
+# {"status": "ok"}
+```
+
+Interactive API docs: `http://localhost:8000/docs`
+
+---
+
 ## What's Next
 
 - **FastAPI endpoint** — wrap `run()` in a POST endpoint so the pipeline can be called from a frontend or external system (Phase 2)
