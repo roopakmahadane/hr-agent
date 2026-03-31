@@ -99,6 +99,24 @@ The `__main__` block runs a real end-to-end pipeline with an Impresario Entertai
 
 ---
 
+## Live API
+
+Deployed on Railway: **https://web-production-d19c6.up.railway.app**
+
+```bash
+# Health check
+curl https://web-production-d19c6.up.railway.app/health
+
+# Generate curriculum
+curl -X POST https://web-production-d19c6.up.railway.app/generate-curriculum \
+  -H "Content-Type: application/json" \
+  -d '{"jd_text": "...", "company_profile": {"name": "...", "values": "..."}}'
+```
+
+Interactive docs: https://web-production-d19c6.up.railway.app/docs
+
+---
+
 ## API Usage
 
 Start the server:
